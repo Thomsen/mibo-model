@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
   has_many :contents
 
   attr_accessor :form_password # no need db
-#  attr_accessible :username, :email, :password # need db, rails 4+ move controller
+  #  attr_accessible :username, :email, :password # need db, rails 4+ move controller
+  attr_accessor :password_confirm
 
   email_regex = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]+)\z/i
   
