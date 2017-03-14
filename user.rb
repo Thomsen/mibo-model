@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   attr_accessor :password_confirm
 
   email_regex = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]+)\z/i
-  
+
   validates :username, presence: true,
             length:           {minimum: 4},
             uniqueness:       {case_sensitive: false}
@@ -20,8 +20,8 @@ class User < ActiveRecord::Base
            :uniqueness        => {:message => " already exit",
                                   :case_sensitive => false }
 
-  has_attached_file :portrait_uri, :styles => { :medium => "300x300", :thumb => "100x100" }, :default_url => "//placehold.it/80"
-  validates_attachment_content_type :portrait_uri, :content_type => /\Aimage\/.*\Z/
+  # has_attached_file :portrait_uri, :styles => { :medium => "300x300", :thumb => "100x100" }, :default_url => "//placehold.it/80"
+  # validates_attachment_content_type :portrait_uri, :content_type => /\Aimage\/.*\Z/
 
   before_save :encrypt_password
 
@@ -50,9 +50,9 @@ class User < ActiveRecord::Base
     self.passsalt = Digest::SHA2.hexdigest("#{Time.now.utc}--#{form_password}") if self.new_record?
     self.password = encrypt(form_password)
   end
-  
+
   def encrypt(pass)
     Digest::SHA2.hexdigest("#{self.passsalt}--#{pass}")
   end
-  
+
 end
