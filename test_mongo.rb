@@ -1,4 +1,4 @@
-class TestMongo
-  include Mongoid::Document
-  field :name, type: String
-end
+# class TestMongo
+#   include Mongoid::Document
+#   field :name, type: String
+# end
